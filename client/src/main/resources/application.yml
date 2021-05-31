@@ -1,0 +1,24 @@
+server:
+  port: 8082
+  servlet:
+    session:
+      cookie:
+        name: UISESSION
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          pe-auth-uaa:
+            client-id: pe-auth-uaa-test
+            client-secret: 1234567890
+            scope: test
+            provider: pe-auth-uaa
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            authorization-grant-type: authorization_code
+        provider:
+          pe-auth-uaa:
+            token-uri: http://localhost:8800/oauth/token
+            authorization-uri: http://localhost:8800/oauth/authorize
+            user-info-uri: http://localhost:8800/oauth/check_token
+            user-name-attribute: user_name
